@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "electronic-engineer-110f2",
+    "private_key_id": "fec0b1752d705611f243170f9d792b1883ffbdc3",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDH1Bct5Bxx2lOJ\nujAWhyj3oSA0w5OAqIToCoXt69wFUE06u7ZC1dxpb7BnTSw7xlYhj7mfZb9H06NF\ntf0uX576UFlcRox7vwmRZIydoxVPGlKE+txq4ob8nnFwyv4D5peVgsEJmc1qWqk/\nBX4PnHKRGgYjTVjDi/HwyIxl/BZLyDdOsJ46U7qqPJVstIRg/4mKZNIUUDH95Ewt\nWGlNMM+g7BVSQ5K8EPeKhuubVYqN2y2imwiN8sUW3cw/urpgfAPYmTjTq2Wh5+eO\nqQRNkUL11nFvvo4qso84qWRpbKSkdeYbfv5csyokn1roVY/7sr5VUgndfejeEQhX\nSABYSahxAgMBAAECggEABAvdqrEovG114KeuP7vdt01s4jFv6XYZt6q/80D/zp94\nt0ZIMmZEn+o1VOiRaSHJSCvlR0dIB+OkRt8YIgbLQkHMZOZZWRiq8mXQkYRVFTJw\n/MtLXbfGsyz5Go2ZMhzkT0wy6YvKRslyp13GCfmNsWko07mkB2500st+88aFimQR\nHyEEtNicgTGPgiVOkbOZWmC2FVDHf2kTbUT/OSLSI5U9Gf6SBVE9znpl5xuEhVOO\njy3yaKczplx9LKmcA4Ho8AU6mTJZE4Z9ty3ukKj3HAgMTU5LUfJ2OJfqiHDq8MqY\neqJqRi867IIrxzf81ZlCM358tzuGTedeHaJ5KWDyuQKBgQDw9wfjoEs9n3rU51qI\npZazg+MCNL6hl/HkdF8q80mJwsy6cZhoTUvtMBIZgH906zogR32cO2141uzAcoVZ\nUF/Xz9La2j8g67rCGi8n/hFxejYRIB9Z0XySlyG+ZfIh6Wo1HS8xN778XSpV4zUY\ndVKYua6MeKzC4ULOylIQe87QPwKBgQDUS/sEHMaC0L5gM45eEwIVWs7IaLnduuUt\nbIA1ekB1X5fG2PbVa8y+5BM2sRS1nFaWJuGMEyRzorVv/mpp7Ux3lwfcl+MFQcUY\n8OeO2oi8iKzWhS+2WMOmmMi1+AKXLvTP2kjIyOQ5TRJZtUHXpYFxUExH//hvtgH/\nR44TpE9bTwKBgCUlf+LYWCEEz9O4Yp2EIWpFH568cNLKcLDOO8mMPb7t98+aKWuS\n1uyWp4Ok6oEkrg5B1xxZkPO69j5oqSPunwfO8utoD6lMjbrUfIaGxTugImubbxnS\nkIisobgPUTdnG0da22aT+G5BEoCxCQNfOr9uiHkBNWjJfxoP2HzQCT7TAoGAOjer\n2nDZrz33NwJsZDfqNlj0o9i0P63k8xPyBLhFvOo+APW2msg5GZAKBNGC0FrTE9IN\nwA/vyxYvk0q9e9brRVBRg5jTVLm4hyJpHa+oF6uTWjCj6OlmneUABYbBjxv9XpKJ\nqyYMD/qmsZsXNz/Xw281u/jh9CCBY7QHrjM839kCgYEAzRnTyTEF/Ol8HJmUrC5d\ncKlfmbjsr5BxM2COHRB/efPuG6k+8Ikj5V/qdWYxZK1g4VbYarYMnStMcPQnU9BH\nkJglUx5G6pnNeQOUWDWtUA0UfeoSzYlxARpw6+yEMFP7njuxUzgt8+kwKTniUyIO\nIR2DolYL2ZoBXwFg7q8hog0=\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-2dhuu@electronic-engineer-110f2.iam.gserviceaccount.com",
+    "client_id": "110159884075632232235",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-2dhuu%40electronic-engineer-110f2.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }

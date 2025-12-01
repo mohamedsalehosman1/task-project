@@ -1,0 +1,11 @@
+{
+    "Cart": true,
+    "Categories": true,
+    "Orders": true,
+"Accounts": true,
+    "Products": true,
+    "Vendors": true,
+    "Frontend": true,
+"Roles": true,
+"Settings": true
+}
