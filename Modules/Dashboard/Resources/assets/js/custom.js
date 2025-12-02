@@ -36,3 +36,27 @@ $(document).ready(function () {
         document.getElementById("complete-task")
     ]);
 });
+
+
+
+$(document).on('change', '.product_type', function () {
+    let selected = $(this).val();
+    if (selected === 'none') {
+        $("div.hide_product_type_div").hide();
+    }
+    if (selected === 'select') {
+        $("div.hide_product_type_div").hide();
+    }
+    $('.' + selected + '_div').show().siblings("div.hide_product_type_div").hide();
+})
+
+const selectedProductType = $('.product_type').children("option:selected").val();
+if (selectedProductType) {
+    if (selectedProductType === 'none') {
+        $("div.hide_product_type_div").hide();
+    }
+    if (selectedProductType === 'select') {
+        $("div.hide_product_type_div").hide();
+    }
+    $('.' + selectedProductType + '_div').show().siblings("div.hide_product_type_div").hide();
+}

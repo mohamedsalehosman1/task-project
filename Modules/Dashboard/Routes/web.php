@@ -14,5 +14,7 @@
 Route::middleware('dashboard')->prefix('dashboard')->as('dashboard.')->group(function () {
     Route::get('locale/{locale}', 'LocaleController@update')->name('locale');
     Route::get('/', 'DashboardController@index')->name('home');
+
+    // Route::get('/notifications', 'DashboardController@notifications')->name('notifications');
 });
 

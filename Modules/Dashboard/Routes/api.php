@@ -1,5 +1,4 @@
 <?php
-use Modules\Dashboard\Http\Controllers\MediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +21,4 @@ Route::get('dashboard/charts', 'SelectController@getCharts')->name('dashboard.ch
 
 Route::get('dashboard/render-notifications/{user}', 'SelectController@getNotificationRealTime');
 
-// Route::delete('uploader/media/{media}', 'MediaController@destroy')->name('uploader.media.destroy');
-Route::delete('uploader/media/{media}', [MediaController::class, 'destroy'])
-    ->name('uploader.media.destroy');
+Route::delete('uploader/media/{media}', 'MediaController@destroy')->name('uploader.media.destroy');

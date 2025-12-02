@@ -9,15 +9,13 @@ $(function () {
         },
         placeholder: 'Start typing your text...',
         toolbar: [
-            ['style', ['bold', 'clear']],
-            // ['style', ['bold', 'italic', 'underline', 'clear']],
-            // ['fontsize', ['fontsize']],
-            // ['color', ['color']],
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
             ['insert', ['ltr', 'rtl']],
-            // ['insert', ['link', 'picture', 'video', 'hr']],
-            // ['view', ['fullscreen', 'codeview']]
-            // ['view', ['fullscreen']]
+            ['insert', ['link', 'picture', 'video', 'hr']],
+            ['view', ['fullscreen', 'codeview']]
         ]
     });
 });

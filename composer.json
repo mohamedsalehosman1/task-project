@@ -17,6 +17,7 @@
         "laracasts/flash": "^3.2",
         "laracasts/presenter": "^0.2.8",
         "laraeast/laravel-bootstrap-forms": "10.2",
+        "laraeast/laravel-locales": "^4.3",
         "laraeast/laravel-settings": "^2.0",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.2",

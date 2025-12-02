@@ -22,19 +22,13 @@ class DashboardServiceProvider extends ServiceProvider
      *
      * @return void
      */
-   public function boot()
-{
-    $this->registerTranslations();
-    $this->registerConfig();
-    $this->registerViews();
-    $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
-
-    // Load breadcrumbs file
-    $breadcrumbs = module_path($this->moduleName, 'Routes/breadcrumbs.php');
-    if (file_exists($breadcrumbs)) {
-        include $breadcrumbs;
+    public function boot()
+    {
+        $this->registerTranslations();
+        $this->registerConfig();
+        $this->registerViews();
+        $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
     }
-}
 
     /**
      * Register the service provider.

@@ -6,8 +6,10 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Modules\Accounts\Entities\User;
 use Modules\Dashboard\Transformers\DashboardCardsResource;
 use Modules\Orders\Entities\Order;
+use Illuminate\Support\Facades\Auth;
 
 class SelectController extends Controller
 {
@@ -38,7 +40,7 @@ class SelectController extends Controller
         return new DashboardCardsResource($data);
     }
 
-//    public function getCharts()
+    //    public function getCharts()
 //    {
 //        $data['orders'] = Order::distinct()
 //            ->select(DB::raw('count(*) as total'), DB::raw('DATE_FORMAT(created_at, "%Y-%m-%d") as created_date'))
@@ -75,5 +77,13 @@ class SelectController extends Controller
             ->select(DB::raw('round(AVG(subtotal),0) as average'), DB::raw('DATE_FORMAT(created_at, "%Y-%m-%d") as created_date'))
             ->whereBetween('created_at', [$start, $end])->groupBy('created_date')->limit(7)->get();
         return new DashboardCardsResource($data);
+    }
+
+    public function getNotificationRealTime(User $user)
+    {
+        $messageHtml = view('dashboard::layouts.partials.topbar.notifications', ['admin' => $user])->render();
+        return response()->json([
+            'messageHtml' => $messageHtml,
+        ], 200);
     }
 }

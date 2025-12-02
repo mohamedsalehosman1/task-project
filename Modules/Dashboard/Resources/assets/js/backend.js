@@ -21,11 +21,13 @@ window.Parsley.setLocale(lang);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.headers.common['lang'] = lang;
+window.axios.defaults.headers.common['Accept-Language'] = lang;
 
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-        'lang': lang
+        'Accept-Language': lang,
+        'Lang': lang
     }
 });
 

@@ -4,43 +4,21 @@
     @slot('icon', 'fas fa-layer-group')
     @slot('routeActive', 'dashboard.home')
 @endcomponent
-<!-- Admins -->
 @include('accounts::admins.sidebar')
-<!-- Roles -->
-@include('accounts::users.sidebar')
-
 @include('roles::_sidebar')
-<!-- categories -->
-@include('categories::categories.sidebar')
-<!-- services -->
+@include('accounts::users.sidebar')
+{{-- @include('addresses::.sidebar') --}}
+{{-- @include('vendors::vendors.sidebar') --}}
+{{-- @include('services::services.sidebar') --}}
 @include('products::products.sidebar')
-<!-- projects -->
 
-<!-- employees -->
-{{-- @include('employees::employees.sidebar') --}}
-<!-- sliders -->
-{{-- @include('sliders::sliders.sidebar') --}}
- <!-- news -->
-{{-- @include('blogs::blogs.sidebar') --}}
-<!-- testimonials -->
-{{-- @include('testimonials::testimonials.sidebar') --}}
-<!-- supports -->
-{{-- @include('sliders::supports.sidebar') --}}
+{{-- @include('advertisements::advertisements.sidebar') --}}
+@include('orders::orders.sidebar')
+@include('notifications::notifications.sidebar')
 
-<!-- jobs -->
-{{-- @include('jobs::jobs.sidebar') --}}
-<!-- why us ? -->
-{{-- @include('howknow::sidebar') --}}
-<!-- branches ? -->
-{{-- @include('sliders::branches.sidebar') --}}
-<!-- pages -->
-{{-- @include('settings::pages-sidebar') --}}
-{{-- @include('sliders::certificates.sidebar') --}}
-{{-- @include('sliders::galleries.sidebar') --}}
-{{-- @include('settings::intro-sidebar') --}}
-{{-- @include('projects::projects.sidebar') --}}
+@include('settings::contact-us.sidebar')
+{{-- @include('f_a_qs::f_a_qs.sidebar') --}}
 
-<!-- Subscriptions -->
-{{-- @include('settings::subscription-sidebar') --}}
-<!-- settings -->
-{{-- @include('dashboard::sidebar.settings') --}}
+@include('dashboard::sidebar.settings')
+
+

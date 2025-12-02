@@ -2,12 +2,9 @@
 
 namespace Modules\Dashboard\Http\Controllers;
 
-use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Routing\Controller;
-use Modules\Accounts\Entities\Admin;
-use Modules\Categories\Entities\Category;
-use Modules\Projects\Entities\Project;
+use Modules\Accounts\Entities\User;
 use Modules\Settings\Entities\ContactUs;
 
 class DashboardController extends Controller
@@ -18,12 +15,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $title = 'Dashboard';
-    $breadcrumbs = ['dashboard.home']; 
-        $messages = ContactUs::latest()->take(5)->get();
-        // $projects_number = Project::count();
-        $admins_number = Admin::count();
-        $client_number = Category::count();
+        $users =auth()->user()->vendor ? "this comes from order table " :User::whereDoesntHave("roles")->count() ;
+
+        $messages =  ContactUs::orderBy('created_at', 'desc')->take(4)->get();
         return view('dashboard::index', get_defined_vars());
     }
 }

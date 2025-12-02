@@ -24,5 +24,6 @@ try {
     require('./formValidation');
     import('./mapInput');
     require('./repeater');
+    require('./notify.min.js');
 } catch (e) {
 }

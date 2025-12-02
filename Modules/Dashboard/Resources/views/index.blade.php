@@ -1,4 +1,3 @@
-{{-- Extends layout --}}
 @extends('dashboard::layouts.default')
 
 @section('title')
@@ -32,26 +31,20 @@
                     </div>
                 </div>
 
-                {{-- @include("dashboard::layouts.apps.statestics") --}}
+                @include('dashboard::layouts.apps.statestics')
 
+                @if (!auth()->user()->isVendor())
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @include('dashboard::layouts.apps.inbox')
+                        </div>
 
-                <!-- Visitors Map -->
-                {{-- @include("dashboard::layouts.apps.vectoe-map") --}}
-                <!--/ Visitors Map -->
-
-                <!--/ chart -->
-                {{-- @include("dashboard::layouts.apps.chart") --}}
-                <!--/ chart -->
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        @include('dashboard::layouts.apps.inbox')
+                        <div class="col-lg-6">
+                            @include('dashboard::layouts.apps.notifications')
+                        </div>
                     </div>
+                @endif
 
-                    {{-- <div class="col-lg-8">
-                        @include('dashboard::layouts.apps.donations')
-                    </div> --}}
-                </div>
             </div>
         </div>
     @endcomponent

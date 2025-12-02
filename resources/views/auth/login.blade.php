@@ -1,8 +1,6 @@
 @extends('dashboard::layouts.default-without-nav')
 
-@section('title')
-    @lang('admin.auth.login.title')
-@endsection
+@section('title') @lang('admin.auth.login.title') @endsection
 
 @section('content')
     <div class="home-btn d-none d-sm-block">
@@ -29,62 +27,66 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="username">@lang('admin.auth.login.email')</label>
-                                        <input id="email" type="email"
-                                            class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                            name="email" required autocomplete="email" placeholder="@lang('admin.auth.login.email')"
-                                            autofocus>
-                                        @if ($errors->has('email'))
+                                        <input id="email"
+                                               type="email"
+                                               class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                               name="email"
+                                               required
+                                               autocomplete="email"
+                                               placeholder="@lang('admin.auth.login.email')"
+                                               autofocus>
+                                        @if($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('email') }}</strong>
-                                            </span>
+                                                     <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
                                         @endif
                                     </div>
 
                                     <div class="form-group">
                                         <label for="password">@lang('admin.auth.login.password')</label>
-                                        <input id="password" type="password" placeholder="@lang('admin.auth.login.password')"
-                                            class="form-control  {{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                            name="password" required autocomplete="current-password">
-                                        @if ($errors->has('password'))
+                                        <input id="password"
+                                               type="password"
+                                               placeholder="@lang('admin.auth.login.password')"
+                                               class="form-control  {{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                               name="password"
+                                               required
+                                               autocomplete="current-password">
+                                        @if($errors->has('password'))
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('password') }}</strong>
-                                            </span>
+                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                </span>
                                         @endif
                                     </div>
 
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" name="remember"
-                                            id="customControlInline" {{ old('remember') ? 'checked' : '' }}>
+                                               id="customControlInline" {{ old('remember') ? 'checked' : '' }}>
                                         <label class="custom-control-label"
-                                            for="customControlInline">@lang('admin.auth.login.remember')</label>
+                                               for="customControlInline">@lang('admin.auth.login.remember')</label>
                                     </div>
 
                                     <div class="mt-3">
                                         <button class="btn btn-primary btn-block " id="login"
-                                            type="submit">@lang('admin.auth.login.submit')</button>
+                                                type="submit">@lang('admin.auth.login.submit')</button>
                                     </div>
 
-                                    <div class="row mt-4 justify-content-between px-5">
+
+                                    <div class="row mt-4 justify-content-center px-5">
                                         <div>
                                             <a href="{{ route('register') }}" class="text-muted">
                                                 <i class="mdi mdi-account-plus mr-1"></i>
-                                                {{ __('Register New Account') }}
+                                                {{ __('تسجيل حساب جديد') }}
                                             </a>
                                         </div>
 
-                                        <div>
+                                        {{-- <div>
                                             <a href="{{ route('password.request') }}" class="text-muted">
                                                 <i class="mdi mdi-lock mr-1"></i>
                                                 {{ __('Forgot Your Password ?') }}
                                             </a>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </form>
-                                @if (session('pending_store'))
-                                    <div class="alert alert-warning mt-3 mb-0">
-                                        {{ session('pending_store') }}
-                                    </div>
-                                @endif
                             </div>
 
                         </div>
@@ -94,4 +96,5 @@
             </div>
         </div>
     </div>
+
 @endsection

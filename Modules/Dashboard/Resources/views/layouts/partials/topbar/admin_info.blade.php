@@ -1,27 +1,43 @@
 <div class="dropdown d-inline-block">
     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+        aria-haspopup="true" aria-expanded="false">
         <img class="rounded-circle header-profile-user" src="{{ auth()->user()->getAvatar() }}" alt="Header Avatar">
         <span class="d-none d-xl-inline-block ml-1">{{ auth()->user()->name }}</span>
         <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
     </button>
     <div class="dropdown-menu dropdown-menu-right">
-        <!-- item-->
-        <a class="dropdown-item" href="{{ route('dashboard.admins.show',auth()->user()) }}">
-            <i class="bx bx-user font-size-16 align-middle mr-1"></i>
-            @lang('accounts::admins.my_profile')
-        </a>
+
+        @php
+            $vendor = auth()->user()->vendor;
+            $isVendor = (bool) auth()->user()->hasRole('vendor');
+        @endphp
+
+        @if ($isVendor)
+    <!-- item-->
+    <a class="dropdown-item" href="{{ route('dashboard.vendors.profile') }}">
+        <i class="bx bx-user font-size-16 align-middle mr-1"></i>
+        @lang('accounts::admins.my_profile')
+    </a>
+@else
+    <a class="dropdown-item" href="{{ route('dashboard.admins.show',auth()->user()) }}">
+        <i class="bx bx-user font-size-16 align-middle mr-1"></i>
+        @lang('accounts::admins.my_profile')
+    </a>
+@endif
+
+
+
         @impersonating
-        <a class="dropdown-item" href="{{ route('impersonate.leave') }}">
-            <i class="bx bx-exit font-size-16 align-middle mr-1"></i>
-            {{--            @lang('accounts::admins.my_profile')--}}
-            @lang('accounts::admins.impersonate.leave')
-        </a>
+            <a class="dropdown-item" href="{{ route('impersonate.leave') }}">
+                <i class="bx bx-exit font-size-16 align-middle mr-1"></i>
+                {{--            @lang('accounts::admins.my_profile') --}}
+                @lang('accounts::admins.impersonate.leave')
+            </a>
         @endImpersonating
-        {{--        <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle mr-1"></i> Lock screen</a>--}}
+        {{--        <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle mr-1"></i> Lock screen</a> --}}
         <div class="dropdown-divider"></div>
         <a class="dropdown-item text-danger" href="#"
-           onclick="event.preventDefault();document.getElementById('logoutForm').submit()">
+            onclick="event.preventDefault();document.getElementById('logoutForm').submit()">
             <i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i>
             @lang('admin.auth.logout')
         </a>

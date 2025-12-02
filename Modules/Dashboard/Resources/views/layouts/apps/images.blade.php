@@ -1,7 +1,7 @@
 @isset($images)
-    <div class="row">
+    <div class="row w-100">
         @foreach ($images as $image)
-            <div class="card col-2" id="{{ 'media-'.$image['id'] }}">
+            <div class="card col-4" id="{{ 'media-'.$image['id'] }}">
                 <div class="card-body text-center">
                     <img src="{{ $image['url'] }}" class="mr-2 img-thumbnail" style="width: 140px; height: 110px;">
                     <button type="button" class="btn btn-sm btn-danger delMedia"

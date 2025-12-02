@@ -5,8 +5,19 @@
 
     <div class="mt-3">
 
-        <a href="{{ route('dashboard.admins.show',auth()->user()) }}" class="text-dark font-weight-medium font-size-16">{{ auth()->user()->name }}</a>
-{{--        <p class="text-body mt-1 mb-0 font-size-13">UI/UX Designer</p>--}}
+        @php
+            $vendor = auth()->user()->vendor;
+            $isVendor = (bool) auth()->user()->hasRole('vendor');
+        @endphp
+
+        @if ($isVendor)
+            <a href="{{ route('dashboard.vendors.profile') }}"
+                class="text-dark font-weight-medium font-size-16">{{ optional(auth()->user()->admin)->name ?? (auth()->user()->name ?? 'اسم المستخدم') }}</a>
+        @else
+            {{-- <a href="{{ route('dashboard.admins.profile') }}"
+                class="text-dark font-weight-medium font-size-16">{{ optional(auth()->user()->admin)->name ?? (auth()->user()->name ?? 'اسم المستخدم') }}
+            </a> --}}
+        @endif
 
     </div>
 </div>

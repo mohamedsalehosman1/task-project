@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{  app_favicon() }}">
+    <link rel="shortcut icon"
+          href="{{  app_favicon() }}">
     @include('dashboard::layouts.base.head')
 </head>
 

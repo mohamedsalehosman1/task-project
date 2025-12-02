@@ -1,4 +1,4 @@
-<div class="card card-custom mb-5 mt-3">
+<div class="card card-custom mb-5">
     @if(isset($title) || isset($tools))
         <div class="card-header flex-wrap border-0 pt-6 pb-0">
             <div class="card-title">

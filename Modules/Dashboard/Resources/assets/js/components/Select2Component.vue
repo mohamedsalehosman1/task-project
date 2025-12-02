@@ -1,14 +1,30 @@
 <template>
     <div class="form-group">
         <label :for="name" v-if="label">{{ label }}</label>
-        <select ref="select" class="form-control" :name="name"
-                v-model="multiple ? selected_values : selected" :multiple="multiple" :required="required === true">
+
+        <select v-if="disable" disabled ref="select" class="form-control" :name="name"
+                v-model="multiple ? selected_values : selected"
+                :multiple="multiple"
+                :required="required === true">
             <option value="" v-if="placeholder">{{ placeholder }}</option>
             <option v-for="item in items.data" :key="item.id" :data-image="item.image" :value="item.id">{{
                     item.text
                 }}
             </option>
         </select>
+
+        <select v-else ref="select" class="form-control" :name="name"
+                v-model="multiple ? selected_values : selected"
+                :multiple="multiple"
+                :required="required === true">
+            <option value="" v-if="placeholder">{{ placeholder }}</option>
+            <option v-for="item in items.data" :key="item.id" :data-image="item.image" :value="item.id">{{
+                    item.text
+                }}
+            </option>
+        </select>
+
+
     </div>
 </template>
 
@@ -30,6 +46,10 @@ export default {
         placeholder: {
             required: false,
             type: String,
+        },
+        disable: {
+            required: false,
+            type: null,
         },
         remoteUrl: {
             required: true,

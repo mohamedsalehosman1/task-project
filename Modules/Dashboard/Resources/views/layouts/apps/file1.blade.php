@@ -1,7 +1,7 @@
 @isset($file)
-    <input type="file" name="{{ $name }}" class="dropify" data-default-file="{{ $file }}" />
+    <input type="file" name="{{ $name }}" class="dropify" data-height="180" data-default-file="{{ $file }}" />
 @else
-    <input type="file" name="{{ $name }}" class="dropify" data-height="200" />
+    <input type="file" name="{{ $name }}" class="dropify" data-height="180" data-max-file-size="5M"/>
 @endisset
 @include('dashboard::seo.inputs')
 

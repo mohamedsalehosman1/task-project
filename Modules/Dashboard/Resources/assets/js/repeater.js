@@ -1,4 +1,13 @@
 jQuery(document).ready(function ($) {
+
+    // if ($('html')[0].lang == 'ar') {
+    //     var title = "هل انت متأكد ؟";
+    //     var text = "هل أنت متأكد أنك تريد حذف هذا الهاتف؟";
+    // } else {
+    //     var title = "Are you sure ?";
+    //     var text = "Are you sure you want to delete this phone ?";
+    // }
+
     $('.repeater').repeater({
         initEmpty: false,
         defaultValues: {
@@ -9,8 +18,8 @@ jQuery(document).ready(function ($) {
         },
         hide: function (e) {
             // toast.fire({
-            //     title: "Are you sure?",
-            //     text: "You won't be able to revert this",
+            //     title: title,
+            //     text: text,
             //     type: "warning",
             //     showCancelButton: !0,
             //     confirmButtonColor: "#3b5de7",
@@ -24,6 +33,20 @@ jQuery(document).ready(function ($) {
 
         },
         isFirstItemUndeletable: true
+    });
+
+    $('.repeater-attr').repeater({
+        initEmpty: false,
+        defaultValues: {
+            'text-input': 'phone'
+        },
+        show: function () {
+            $(this).slideDown();
+        },
+        hide: function (e) {
+            $(this).fadeOut(1000, e);
+        },
+        isFirstItemUndeletable: false
     });
 
     $(".dayRepeater").repeater({
