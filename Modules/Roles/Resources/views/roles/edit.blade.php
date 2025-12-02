@@ -5,8 +5,7 @@
 @endsection
 
 @section('content')
-        {{-- @component('dashboard::layouts.components.page') --}}
-
+@component('dashboard::layouts.components.page')
         @slot('title', $role->name)
         @slot('breadcrumbs', ['dashboard.roles.edit', $role])
 

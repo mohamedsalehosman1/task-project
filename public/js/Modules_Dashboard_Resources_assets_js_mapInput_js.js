@@ -9,7 +9,6 @@
 function initialize() {
   $('form').on('keyup keypress', function (e) {
     var keyCode = e.keyCode || e.which;
-
     if (keyCode === 13) {
       e.preventDefault();
       return false;
@@ -18,7 +17,6 @@ function initialize() {
   var locationInputs = document.getElementsByClassName("map-input");
   var autocompletes = [];
   var geocoder = new google.maps.Geocoder();
-
   for (var i = 0; i < locationInputs.length; i++) {
     var input = locationInputs[i];
     var fieldKey = input.id.replace("-input", "");
@@ -50,8 +48,7 @@ function initialize() {
       autocomplete: autocomplete
     });
   }
-
-  var _loop = function _loop(_i) {
+  var _loop = function _loop() {
     var input = autocompletes[_i].input;
     var autocomplete = autocompletes[_i].autocomplete;
     var map = autocompletes[_i].map;
@@ -68,37 +65,31 @@ function initialize() {
           setLocationCoordinates(autocomplete.key, lat, lng);
         }
       });
-
       if (!place.geometry) {
         window.alert("No details available for input: '" + place.name + "'");
         input.value = "";
         return;
       }
-
       if (place.geometry.viewport) {
         map.fitBounds(place.geometry.viewport);
       } else {
         map.setCenter(place.geometry.location);
         map.setZoom(17);
       }
-
       marker.setPosition(place.geometry.location);
       marker.setVisible(true);
     });
   };
-
   for (var _i = 0; _i < autocompletes.length; _i++) {
-    _loop(_i);
+    _loop();
   }
 }
-
 function setLocationCoordinates(key, lat, lng) {
   var latitudeField = document.getElementById(key + "-" + "latitude");
   var longitudeField = document.getElementById(key + "-" + "longitude");
   latitudeField.value = lat;
   longitudeField.value = lng;
 }
-
 jQuery(document).ready(function ($) {
   initialize();
 });

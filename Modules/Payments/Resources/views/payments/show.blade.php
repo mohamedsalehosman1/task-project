@@ -5,8 +5,7 @@
 @endsection
 
 @section('content')
-        {{-- @component('dashboard::layouts.components.page') --}}
-
+@component('dashboard::layouts.components.page')
         @slot('title', $payment->name)
         @slot('breadcrumbs', ['dashboard.payments.show', $payment])
 

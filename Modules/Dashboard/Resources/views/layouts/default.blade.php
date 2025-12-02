@@ -46,6 +46,20 @@
 
 <!-- JAVASCRIPT -->
 @include('dashboard::layouts.base.footer-script')
+<script>
+    window.addEventListener('load', function () {
+        var preloader = document.getElementById('preloader');
+        if (preloader) {
+            preloader.style.opacity = '0';
+            preloader.style.pointerEvents = 'none';
+            // لو عايز تشيله نهائي بعد ثانيتين
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 500);
+        }
+    });
+</script>
+
 </body>
 
 </html>

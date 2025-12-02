@@ -5,8 +5,7 @@
 @endsection
 
 @section('content')
-        {{-- @component('dashboard::layouts.components.page') --}}
-
+@component('dashboard::layouts.components.page')
         @slot('title', trans('settings::settings.actions.update'))
         @slot('breadcrumbs', ['dashboard.settings.update'])
 

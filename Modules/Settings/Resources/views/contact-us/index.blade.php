@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-        {{-- @component('dashboard::layouts.components.page') --}}
+         @component('dashboard::layouts.components.page')
 
         @slot('title', trans('settings::contactus.plural'))
         @slot('breadcrumbs', ['dashboard.contactus.index'])

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-        {{-- @component('dashboard::layouts.components.page') --}}
+        @component('dashboard::layouts.components.page') 
 
         @slot('title', $order?->user?->name)
         @slot('breadcrumbs', ['dashboard.orders.show', $order])

@@ -1,6 +1,48 @@
-// admin css
+// --------------------------------------------------------
+//  Bootstrap Core
+// --------------------------------------------------------
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+// --------------------------------------------------------
+//  Variables overrides (Light + Dark)
+// --------------------------------------------------------
+@import "_variables";
+@import "_variables-dark";
+
+// --------------------------------------------------------
+//  Bootstrap mixins + core
+// --------------------------------------------------------
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/bootstrap";
+
+// --------------------------------------------------------
+//  Theme Core
+// --------------------------------------------------------
 @import "admin";
-@import "custom/select2";
-@import "custom/editor";
-@import "custom/formValidation";
+@import "admin-dark";
+
+// --------------------------------------------------------
+//  Bootstrap theme overrides
+// --------------------------------------------------------
+@import "bootstrap";
+@import "bootstrap-dark";
+
+// --------------------------------------------------------
+//  Structure (موجودة داخل custom/structure)
+// --------------------------------------------------------
+@import "custom/structure/_footer";
+@import "custom/structure/_topbar";
+@import "custom/structure/_general";
+@import "custom/structure/_layouts";
+@import "custom/structure/_vertical";
+@import "custom/structure/_page-head";
+@import "custom/structure/_right-sidebar";
+@import "custom/structure/_horizontal-nav";
+
+// --------------------------------------------------------
+//  Components + Custom
+// --------------------------------------------------------
+@import "_components";
 @import "custom/custom";

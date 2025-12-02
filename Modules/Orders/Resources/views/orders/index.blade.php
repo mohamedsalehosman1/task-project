@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-        {{-- @component('dashboard::layouts.components.page') --}}
+         @component('dashboard::layouts.components.page')
 
         @slot('title', trans('orders::orders.plural'))
         @slot('breadcrumbs', ['dashboard.orders.index'])

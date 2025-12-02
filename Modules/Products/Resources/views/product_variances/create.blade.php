@@ -5,8 +5,7 @@
 @endsection
 
 @section('content')
-        {{-- @component('dashboard::layouts.components.page') --}}
-
+@component('dashboard::layouts.components.page')
         @slot('title', trans('products::product_variances.plural'))
         @slot('breadcrumbs', ['dashboard.product_variances.create' , $product])
 

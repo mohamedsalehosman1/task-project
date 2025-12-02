@@ -72,9 +72,7 @@ else{
     public function create()
     {
         $vendors = Vendor::listsTranslations("name")->pluck('name', 'id')->toArray();
-        $services = Service::listsTranslations("name")->pluck('name', 'id')->toArray();
-        $regions = Region::listsTranslations("name")->pluck('name', 'id');
-        $addresses = Address::listsTranslations("name")->pluck('name', 'id');
+       
 
         return view('products::products.create', get_defined_vars());
     }

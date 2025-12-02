@@ -4,8 +4,7 @@
     {{ $contact->name }}
 @endsection
 @section('content')
-        {{-- @component('dashboard::layouts.components.page') --}}
-
+@component('dashboard::layouts.components.page')
         @slot('title', $contact->name)
         @slot('breadcrumbs', ['dashboard.contactus.show', $contact])
 

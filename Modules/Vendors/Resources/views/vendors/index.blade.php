@@ -6,8 +6,7 @@
 
 @section('content')
 
-        {{-- @component('dashboard::layouts.components.page') --}}
-
+@component('dashboard::layouts.components.page')
         @slot('title', trans('vendors::vendors.plural'))
 
         @slot('breadcrumbs', ['dashboard.vendors.index'])

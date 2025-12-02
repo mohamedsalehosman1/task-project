@@ -5,8 +5,7 @@
 @endsection
 
 @section('content')
-        {{-- @component('dashboard::layouts.components.page') --}}
-
+@component('dashboard::layouts.components.page')
         @slot('title', trans('products::products.actions.pending_requests'))
         @slot('breadcrumbs', ['requests'])
 
