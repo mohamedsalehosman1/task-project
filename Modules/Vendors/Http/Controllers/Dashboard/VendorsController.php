@@ -1,4 +1,5 @@
 <?php
+
 namespace Modules\Vendors\Http\Controllers\Dashboard;
 
 use Exception;
@@ -8,11 +9,12 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Vendors\Entities\Scopes\NotBlockedScope;
-use Modules\Vendors\Entities\Vendor;
 use Modules\Vendors\Http\Requests\VendorRequest;
 use Modules\Vendors\Repositories\VendorRepository;
+use Modules\Vendors\Entities\Vendor;
 
 class VendorsController extends Controller
 {
@@ -74,6 +76,7 @@ class VendorsController extends Controller
      */
     public function store(VendorRequest $request)
     {
+
         $vendor = $this->repository->create($request->allWithHashedPassword());
 
         flash(trans('vendors::vendors.messages.created'))->success();
@@ -135,7 +138,7 @@ class VendorsController extends Controller
     {
         $exists = $this->canDelete($vendor);
 
-        if (! $exists) {
+        if (!$exists) {
             $this->repository->delete($vendor->id);
         }
         flash(trans('vendors::vendors.messages.' . ($exists ? "cant-delete" : "deleted")))->error();
@@ -156,7 +159,7 @@ class VendorsController extends Controller
     {
         $exists = $this->canDelete($vendor);
 
-        if (! $exists) {
+        if (!$exists) {
             $this->repository->block($vendor);
         }
 
@@ -179,6 +182,7 @@ class VendorsController extends Controller
 
         return redirect()->route('dashboard.vendors.index');
     }
+
 
     /**
      *  Display a listing of the trashed resource.
@@ -204,11 +208,6 @@ class VendorsController extends Controller
 
         return redirect()->route('dashboard.vendors.trashed');
     }
-    public function requests()
-    {
-        $vendors = $this->repository->requests();
-        return view('vendors::vendors.requests', get_defined_vars());
-    }
 
     /**
      * Restore the specified resource from storage.
@@ -217,12 +216,14 @@ class VendorsController extends Controller
     public function restore($id)
     {
         $vendor = Vendor::withTrashed()->find($id);
-        $this->repository->restore($vendor);
+
+        $this->repository->restore($vendor->id);
 
         flash(trans('vendors::vendors.messages.restored'))->success();
 
         return redirect()->route('dashboard.vendors.trashed');
     }
+
 
     public function profile()
     {
@@ -233,12 +234,6 @@ class VendorsController extends Controller
     public function updateProfile(VendorRequest $request, Vendor $vendor)
     {
         $this->repository->update($vendor, $request->allWithHashedPassword());
-        return redirect()->back();
-    }
-    public function status(Vendor $vendor)
-    {
-        $this->repository->changeStatus($vendor);
-        flash(trans('vendors::vendors.messages.' . request('status')))->success();
         return redirect()->back();
     }
 

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-@component('dashboard::layouts.components.page')
+    @component('dashboard::layouts.components.page')
         @slot('title', $product->name)
         @slot('breadcrumbs', ['dashboard.products.edit', $product])
 
@@ -13,7 +13,7 @@
         @component('dashboard::layouts.components.box')
             @slot('title', trans('products::products.actions.edit'))
 
-            @include('products::products.partials.editForm')
+            @include('products::products.partials.form')
 
             @slot('footer')
                 {{ BsForm::submit()->label(trans('products::products.actions.save')) }}

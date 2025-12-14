@@ -14,6 +14,5 @@ use Illuminate\Http\Request;
 */
 
 
-Route::middleware('auth:sanctum')->apiResource('products', 'Api\ProductController')->only('index', 'show','store');
+Route::apiResource('products', 'Api\ProductController')->only('index', 'show');
 Route::post('select/get-products-by-vendor/{id}', 'Api\SelectController@vendorProducts');
-Route::get('userproducts/{id}', 'Api\ProductController@showuserproduct');

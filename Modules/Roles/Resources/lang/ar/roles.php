@@ -44,7 +44,10 @@ return [
             'cancel' => 'الغاء',
         ],
     ],
+
     'models' => [
+        'categories' => 'الأقسام',
+        'products' => 'المنتجات',
         'roles' => 'الأدوار',
         'admins' => 'المشرفون',
         'users' => 'المستخدمون',

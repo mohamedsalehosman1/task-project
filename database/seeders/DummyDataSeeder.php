@@ -31,9 +31,9 @@ class DummyDataSeeder extends Seeder
         // $this->call(TestimonialsTableSeeder::class);
         // $this->call(SettingsDatabaseSeeder::class);
         // $this->call(ContactusTableSeeder::class);
-        $this->call(CategoriesDatabaseSeeder::class);
+        // $this->call(CategoriesDatabaseSeeder::class);
         // $this->call(EmployeesDatabaseSeeder::class);
-        // $this->call(ServicesDatabaseSeeder::class);
+        // $this->call(Database\Seeders\::class);
         // $this->call(ProjectsDatabaseSeeder::class);
         // $this->call(ReasonSeederTableSeeder::class);
         // $this->call(PackagesDatabaseSeeder::class);

@@ -25,13 +25,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        @bsMultilangualFormTabs
+                        @multilingualFormTabs
                             {{ BsForm::textarea('terms_content')->rows(3)
                             ->attribute('class','form-control textarea')
                             ->value(Settings::locale($locale->code)->get('terms_content'))
                             ->attribute(['data-parsley-minlength' => '3'])
                             ->label(__("Terms and Conditions Page Content")) }}
-                        @endBsMultilangualFormTabs
+                        @endMultilingualFormTabs
+
 
                     </div>
                 </div>
@@ -53,13 +54,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        @bsMultilangualFormTabs
+                        @multilingualFormTabs
                             {{ BsForm::textarea('privacy_content')->rows(3)
                             ->attribute('class','form-control textarea')
                             ->value(Settings::locale($locale->code)->get('privacy_content'))
                             ->attribute(['data-parsley-minlength' => '3'])
                             ->label(__("Privacy Page Content")) }}
-                        @endBsMultilangualFormTabs
+                        @endMultilingualFormTabs
+
                     </div>
                 </div>
             </div>
@@ -80,13 +82,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        @bsMultilangualFormTabs
+                        @multilingualFormTabs
                             {{ BsForm::textarea('aboutus_content')->rows(3)
                             ->attribute('class','form-control textarea')
                             ->value(Settings::locale($locale->code)->get('aboutus_content'))
                             ->attribute(['data-parsley-minlength' => '3'])
                             ->label(__("About us Page Content")) }}
-                        @endBsMultilangualFormTabs
+                        @endMultilingualFormTabs
+
 
                     </div>
                 </div>
@@ -110,13 +113,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        @bsMultilangualFormTabs
+                        @multilingualFormTabs
                             {{ BsForm::textarea('terms_content')->rows(3)
                             ->attribute('class','form-control textarea')
                             ->value(Settings::locale($locale->code)->get('terms_content'))
                             ->attribute(['data-parsley-minlength' => '3'])
                             ->label(__("Terms Content Page")) }}
-                        @endBsMultilangualFormTabs
+                        @endMultilingualFormTabs
+
 
                     </div>
                 </div>

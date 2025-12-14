@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateProductTranslationsTable extends Migration
 {
@@ -17,8 +17,6 @@ class CreateProductTranslationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->string('name');
-            $table->string('company_name');
-            $table->string('admin_reply')->nullable();
             $table->text('description');
             $table->string('locale')->index();
             $table->unique(['product_id', 'locale']);

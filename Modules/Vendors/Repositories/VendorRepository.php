@@ -2,7 +2,6 @@
 
 namespace Modules\Vendors\Repositories;
 
-use App\Enums\WasherStatusEnum;
 use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +10,6 @@ use Modules\Vendors\Entities\Scopes\NotBlockedScope;
 use Modules\Vendors\Http\Filters\VendorFilter;
 use Modules\Contracts\CrudRepository;
 use Modules\Vendors\Entities\Vendor;
-use Modules\Vendors\Events\VendorStatusEvent;
 
 class VendorRepository implements CrudRepository
 {
@@ -38,19 +36,14 @@ class VendorRepository implements CrudRepository
      */
     public function all()
     {
-        return Vendor::filter($this->filter)->whereStatus(WasherStatusEnum::ACCEPTED->value)->withoutGlobalScope(new NotBlockedScope())->latest()->paginate(request('perPage'));
+        return Vendor::filter($this->filter)->withoutGlobalScope(new NotBlockedScope())->latest()->paginate(request('perPage'));
     }
-
 
     public function allApi()
     {
         return Vendor::filter($this->filter)->latest()->paginate(request('perPage'));
     }
 
-    public function requests()
-    {
-        return Vendor::filter($this->filter)->whereStatus(WasherStatusEnum::PENDING->value)->latest()->paginate(request('perPage'));
-    }
     /**
      * Save the created model to storage.
      *
@@ -61,7 +54,7 @@ class VendorRepository implements CrudRepository
     {
         $vendor = Vendor::create($data);
 
-        // $vendor->setVerified();
+        $vendor->setVerified();
 
         $vendor->addMediaFromRequest('image')->toMediaCollection('images');
 
@@ -72,7 +65,6 @@ class VendorRepository implements CrudRepository
         /** create admin **/
         $admin = $vendor->admin()->create([
             'name' => $data['name:en'],
-            'phone'=>$data['phone'],
             'email' => $data['email'],
             'password' => $data['password'],
             'belongs_to_vendor' => true,
@@ -89,19 +81,10 @@ class VendorRepository implements CrudRepository
      * @param mixed $model
      * @return Vendor
      */
-    // public function find($model)
-    // {
-    //     return Vendor::withTrashed()->withoutGlobalScope(new NotBlockedScope())->findOrFail($model);
-    // }
     public function find($model)
     {
-        if ($model instanceof Vendor) {
-            return $model;
-        }
-
-        return Vendor::withoutGlobalScope(new NotBlockedScope())->findOrFail($model);
+        return Vendor::withTrashed()->withoutGlobalScope(new NotBlockedScope())->findOrFail($model);
     }
-
 
     /**
      * Update the given client in the storage.
@@ -155,14 +138,7 @@ class VendorRepository implements CrudRepository
         return Vendor::onlyTrashed()->filter($this->filter)->paginate(request('perPage'));
     }
 
- public function changeStatus($model): void
-    {
-        $vendor = $this->find($model);
-        $vendor->update([
-            'status' => request('status'),
-        ]);
-        event(new VendorStatusEvent($vendor->refresh()));
-    }
+
     /**
      * hard delete
      * @param mixed $model
@@ -182,6 +158,7 @@ class VendorRepository implements CrudRepository
     public function restore($model)
     {
         $vendor = $this->find($model);
+
         $vendor->restore();
         $vendor->admin()->restore();
     }

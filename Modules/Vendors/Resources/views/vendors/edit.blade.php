@@ -5,8 +5,7 @@
 @endsection
 
 @section('content')
-    {{--     {{-- @component('dashboard::layouts.components.page') --}}
- --}}
+    @component('dashboard::layouts.components.page')
         @slot('title', $vendor->name)
         @slot('breadcrumbs', ['dashboard.vendors.edit', $vendor])
         {{ BsForm::resource('vendors::vendors')->putModel($vendor, auth()->user()->isVendor() ? route('dashboard.vendors.updateProfile' , $vendor) : route('dashboard.vendors.update', $vendor), ['files' => true, 'data-parsley-validate']) }}

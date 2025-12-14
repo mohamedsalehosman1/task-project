@@ -2,9 +2,11 @@
 
 namespace Modules\Frontend\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\View\View;
 use Modules\Categories\Entities\Category;
 use Modules\Employees\Entities\Employee;
 use Modules\HowKnow\Entities\Reason;
@@ -20,26 +22,38 @@ class FrontendController extends Controller
     use ApiTrait;
     /**
      * Display a listing of the resource.
-     * @return RedirectResponse
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
-        $categories = Category::get();
-        return view('frontend::landing', get_defined_vars());
+        // Use templatemo template
+        return view('frontend::templatemo.index');
     }
 
 
     /**
      * Display a listing of the resource.
-     * @return RedirectResponse
+     * @return View
      */
-    public function about()
+    public function about(): View
     {
-        // $clients = Client::orderBy('rank', 'ASC')->get();
-        $categories = Category::get();
-        $reasons = Reason::get();
-        $services = Service::orderBy('rank', 'ASC')->get();
-        return view('frontend::about', get_defined_vars());
+        // Use templatemo template
+        return view('frontend::templatemo.about');
+    }
+
+    public function shop(): View
+    {
+        return view('frontend::templatemo.shop');
+    }
+
+    public function shopSingle($id): View
+    {
+        return view('frontend::templatemo.shop-single', ['productId' => $id]);
+    }
+
+    public function contactGet(): View
+    {
+        return view('frontend::templatemo.contact');
     }
 
     public function services()
@@ -57,9 +71,9 @@ class FrontendController extends Controller
 
     /**
      * Display a listing of the resource.
-     * @return RedirectResponse
+     * @return JsonResponse
      */
-    public function contactPost(Request $request)
+    public function contactPost(Request $request): JsonResponse
     {
         $validator = \Validator::make($request->all(), [
             'name' => 'required',

@@ -5,12 +5,14 @@
 @endsection
 
 @section('content')
-@component('dashboard::layouts.components.page')
+    @component('dashboard::layouts.components.page')
         @slot('title', trans('vendors::vendors.plural'))
         @slot('breadcrumbs', ['dashboard.vendors.create'])
 
-        {{ BsForm::resource('vendors::vendors')->post(route('dashboard.vendors.store'), ['files' => true,'data-parsley-validate']) }}
-        @component('dashboard::layouts.components.box')
+{{ BsForm::resource('vendors::vendors')->post(route('dashboard.vendors.store'), [
+    'enctype' => 'multipart/form-data',
+    'data-parsley-validate' => true,
+]) }}        @component('dashboard::layouts.components.box')
             @slot('title', trans('vendors::vendors.actions.create'))
 
             @include('vendors::vendors.partials.form')

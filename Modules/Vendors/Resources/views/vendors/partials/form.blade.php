@@ -1,11 +1,10 @@
 @include('dashboard::errors')
 
-@bsMultilangualFormTabs
+@multilingualFormTabs
     {{ BsForm::text('name')->required()->attribute(['data-parsley-maxlength' => '191', 'data-parsley-minlength' => '3']) }}
-    {{ BsForm::text('nationality')->required()->attribute(['data-parsley-maxlength' => '191', 'data-parsley-minlength' => '3']) }}
 
     {{ BsForm::textarea('description')->attribute(['class' => 'textarea']) }}
-@endBsMultilangualFormTabs
+@endMultilingualFormTabs
 
 <div class="row">
     <div class="col-6">
@@ -24,14 +23,7 @@
         {{ BsForm::password('password_confirmation') }}
     </div>
 </div>
-<div class="row">
-    <div class="col-6">
-        {{ BsForm::text('commercial_registration_number')->required()->attribute(['data-parsley-minlength' => '3']) }}
-    </div>
-   <div class="col-6">
-        {{ BsForm::text('identity_number')->required()->attribute(['data-parsley-minlength' => '3']) }}
-    </div>
-</div>
+
 <div class="row">
     <div class="col-12">
         <label>{{ __('vendors::vendors.attributes.banners') }}</label>
@@ -64,3 +56,4 @@
 
 
 @include('vendors::vendors.partials.map')
+

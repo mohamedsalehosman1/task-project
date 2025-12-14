@@ -10,7 +10,6 @@ use Modules\Products\Entities\Relations\ProductRelations;
 use Modules\Support\Traits\Favorable;
 use Modules\Support\Traits\MediaTrait;
 use Modules\Support\Traits\Selectable;
-use Modules\Vendors\Entities\Vendor;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -21,23 +20,17 @@ class Product extends Model implements HasMedia
     protected $table = 'products';
 
     protected $fillable = [
-    'vendor_id',
-    'status',
-    'pay_type',
-    'service_id',
-    'old_price',
-    'region_id',
-    'status',
-    'price',
-    'has_quantity_limit',
-    'max_amount',
-    'base_preparation_time',
-    'extra_time_value',
-    'extra_time_unit',
-'active',
-];
+        'vendor_id',
+        'service_id',
+        'old_price',
+        'price',
+        'is_recommended',
+        'count_of_sold',
+        'made_in',
+        'rate'
+    ];
 
-    public $translatedAttributes = ['name', 'description','company_name','admin_reply'];
+    public $translatedAttributes = ['name', 'description'];
 
     /**
      * The relations to eager load on every query.
@@ -69,21 +62,6 @@ class Product extends Model implements HasMedia
     {
         return $this->getFirstMediaUrl('images');
     }
-public function addresses()
-{
-    return $this->belongsToMany(\Modules\Addresses\Entities\Address::class, 'product_addresses')
-                ->withPivot(['latitude', 'longitude','range'])
-                ->withTimestamps();
-}
-
-public function productAddresses()
-{
-    return $this->hasMany(\Modules\Products\Entities\ProductAddress::class);
-}
-public function workingHours()
-{
-    return $this->hasMany(ProductWorkingHour::class);
-}
 
 
     /**
@@ -122,16 +100,5 @@ public function workingHours()
     public function getOfferPriceAttribute()
     {
         return $this->offer?->price;
-    }
-    public function vendor()
-    {
-        return $this->belongsTo(Vendor::class);
-    }
-     public function isActive()
-    {
-        if ($this->active == 1) {
-            return true;
-        }
-        return false;
     }
 }

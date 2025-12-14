@@ -7,9 +7,10 @@
         </ul>
     </div>
 @endif
-@bsMultilangualFormTabs
+@multilingualFormTabs
     {{ BsForm::text('name') }}
-@endBsMultilangualFormTabs
+@endMultilingualFormTabs
+
 
 
 <div class="col-4">

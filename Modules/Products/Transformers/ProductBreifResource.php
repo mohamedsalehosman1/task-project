@@ -3,7 +3,6 @@
 namespace Modules\Products\Transformers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Modules\Carts\Entities\CartItem;
 
 class ProductBreifResource extends JsonResource
 {
@@ -15,23 +14,21 @@ class ProductBreifResource extends JsonResource
      */
     public function toArray($request)
     {
-          $user = auth()->user();
-
-        $inCart = false;
-
-        if ($user && $user->cart) {
-            $inCart = CartItem::where('cart_id', $user->cart->id)
-                ->where('product_id', $this->id)
-                ->exists();
-        }
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'name' => translations($this, 'name'),
+            'localized_name' => $this->name,
             'cover' => $this->cover,
             'old_price' => (float) $this->old_price,
             'price' => (float) $this->price,
-            'in_cart' => $inCart,
-
+            'offer_price' => (float) $this->offerPrice,
+            'has_offer' => (bool) $this->offerPrice,
+            'count_of_sold' => (int) $this->count_of_sold,
+            'made_in' => (string) $this->made_in,
+            'is_recommended' => (bool) $this->is_recommended,
+            'is_favourite' => user() ? $this->isFavored : false,
+            "rate" => round($this->rates()->avg('value'), 1),
+            "rate_count" => $this->rates()->count(),
         ];
     }
 }

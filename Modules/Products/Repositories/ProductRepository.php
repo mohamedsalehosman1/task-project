@@ -1,10 +1,11 @@
 <?php
+
 namespace Modules\Products\Repositories;
 
 use Modules\Contracts\CrudRepository;
 use Modules\Products\Entities\Product;
-use Modules\Products\Entities\UserProduct;
 use Modules\Products\Http\Filters\ProductFilter;
+use Modules\Services\Entities\Price;
 
 class ProductRepository implements CrudRepository
 {
@@ -30,7 +31,7 @@ class ProductRepository implements CrudRepository
      */
     public function all()
     {
-        return Product::where('status', 'accepeted')->filter($this->filter)->paginate(request('perPage'));
+        return Product::filter($this->filter)->paginate(request('perPage'));
     }
 
     /**
@@ -40,7 +41,7 @@ class ProductRepository implements CrudRepository
      */
     public function allApi()
     {
-        return Product::where('status', 'accepeted')->filter($this->filter)->paginate(request('perPage'));
+        return Product::filter($this->filter)->paginate(request('perPage'));
     }
 
     /**
@@ -49,10 +50,8 @@ class ProductRepository implements CrudRepository
      * @param array $data
      * @return \Modules\Products\Entities\Product
      */
-
-    public function createproduct(array $data)
+    public function create(array $data)
     {
-
         $product = Product::create($data);
 
         $product->addMediaFromRequest('cover')->toMediaCollection('covers');
@@ -63,20 +62,8 @@ class ProductRepository implements CrudRepository
             }
         }
 
-        return $product;
-    }
-
-    public function create(array $data)
-    {
-
-        $product = UserProduct::create($data);
-
-        $product->addMediaFromRequest('cover')->toMediaCollection('covers');
-
-        if (isset($data['images'])) {
-            foreach ($data['images'] as $image) {
-                $product->addMedia($image)->toMediaCollection('images');
-            }
+        foreach ($data['material'] as $material) {
+            $product->materials()->create($material);
         }
 
         return $product;
@@ -120,21 +107,16 @@ class ProductRepository implements CrudRepository
                 $product->addMedia($image)->toMediaCollection('images');
             }
         }
-        // $product->materials()->delete();
-        // foreach ($data['material'] as $material) {
-        //     $product->materials()->create($material);
-        // }
+        $product->materials()->delete();
+        foreach ($data['material'] as $material) {
+            $product->materials()->create($material);
+        }
+
+
 
         return $product;
     }
-public function changeStatus($model): void
-    {
-        $vendor = $this->find($model);
-        $vendor->update([
-            'status' => request('status'),
-        ]);
 
-    }
     /**
      * Delete the given Product from storage.
      *

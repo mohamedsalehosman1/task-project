@@ -19,7 +19,3 @@ Breadcrumbs::for('dashboard.products.edit', function ($breadcrumb, $product) {
     $breadcrumb->parent('dashboard.products.show', $product);
     $breadcrumb->push(trans('products::products.actions.edit'), route('dashboard.products.edit', $product));
 });
-Breadcrumbs::for('requests', function ($trail) {
-    $trail->parent('dashboard.products.index');
-    $trail->push(trans('products::products.requests'), route('requests'));
-});

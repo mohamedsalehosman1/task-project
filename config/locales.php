@@ -14,7 +14,7 @@ return [
     */
 
     'supported' => [
-        Language::AR,  // عربي
-        Language::EN,  // إنجليزي
+        Language::AR,
+        Language::EN, 
     ],
 ];

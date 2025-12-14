@@ -1,12 +1,15 @@
 {
+    "Dashboard": true,
     "Cart": true,
     "Categories": true,
     "Orders": true,
-"Accounts": true,
+    "Accounts": true,
     "Products": true,
     "Vendors": true,
     "Frontend": true,
-"Roles": true,
-"Settings": true,
-"Notifications": true
+    "Roles": true,
+    "Settings": true,
+    "Notifications": true,
+    "Services": true,
+    "Advertisements": true
 }

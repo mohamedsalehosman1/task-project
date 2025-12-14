@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="home-btn d-none d-sm-block">
-        <a href="{{ route('home') }}" class="text-dark"><i class="fas fa-home h2"></i></a>
+        <a href="{{ route('frontend.home') }}" class="text-dark"><i class="fas fa-home h2"></i></a>
     </div>
     <div class="account-pages my-5 pt-sm-5">
         <div class="container">
@@ -16,7 +16,7 @@
                             <div class="position-relative">
                                 {{-- <h5 class="text-white font-size-20">@lang('admin.auth.login.title')</h5>
                                 <p class="text-white-50 mb-0">@lang('admin.auth.login.info').</p> --}}
-                                <a href="{{ route('home') }}" class="logo logo-dark mt-4">
+                                <a href="{{ route('frontend.home') }}" class="logo logo-dark mt-4">
                                     <img src="{{ app_login_logo() }}" alt="" height="100">
                                 </a>
                             </div>

@@ -1,55 +1,95 @@
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-{{--@bsMultilangualFormTabs--}}
-{{ BsForm::text('name')->required() }}
-{{--@endBsMultilangualFormTabs--}}
+<!-- ============================
+     PERMISSIONS PAGE (FULL BLADE)
+     ============================ -->
+
+<!-- تحميل bootstrap-select CSS -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/css/bootstrap-select.min.css">
+
+<style>
+    .permission-card {
+        background: #f8f9fc;
+        border: 1px solid #d6d8e1;
+        border-radius: 6px;
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+
+    .bootstrap-select .dropdown-menu {
+        max-height: 250px !important;
+    }
+
+    .bootstrap-select .dropdown-menu.inner {
+        max-height: 200px !important;
+    }
+</style>
+
 
 <div class="form-group col-12">
-    <h5>@lang('roles::roles.attributes.permissions')</h5>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>@lang('roles::roles.attributes.model')</th>
-            <th>@lang('roles::roles.attributes.permissions')</th>
-        </tr>
-        </thead>
-        <tbody>
+    <h4 class="mb-4">الصلاحيات</h4>
+{{ BsForm::text('name')->required() }}
 
-        @php
-            $config = Config::get('laratrust_seeder.roles_structure.super_admin');
-            $mapPermission = collect(config('laratrust_seeder.permissions_map'));
-        @endphp
+    @php
+        $config = config('laratrust_seeder.roles_structure.super_admin');
+        $mapPermission = collect(config('laratrust_seeder.permissions_map'));
+    @endphp
 
-        @foreach ($config as $key => $modules)
-            <tr>
-                <td>@lang('roles::roles.models.' . $key)</td>
-                <td>
-                    <select name="permissions[]" class="form-control selectpicker" data-live-search="true" data-actions-box="true" multiple>
-                        @foreach (explode(',', $modules) as $p => $perm)
-                            @php
-                                $permissionValue = $mapPermission->get($perm)
-                            @endphp
-                            @if($permissionValue)
-                                <option
-                                    value="{{ $permissionValue . '_' . $key }}"
-                                    @isset($role)
-                                    @if($role->hasPermission($permissionValue . '_' . $key)) selected @endif
-                                    @endisset
-                                >@lang('roles::roles.permission_maps.' . $permissionValue)</option>
-                            @endif
-                        @endforeach
-                    </select>
-                </td>
-            </tr>
+    @foreach ($config as $modelKey => $permissionsString)
 
-        @endforeach
-        </tbody>
-    </table>
+        <div class="permission-card">
+
+            <label class="font-weight-bold" style="font-size:16px;">
+                @lang('roles::roles.models.' . $modelKey)
+            </label>
+
+            @php
+                $permissions = explode(',', $permissionsString);
+                $selected = [];
+
+                if (isset($role)) {
+                    foreach ($permissions as $permKey) {
+                        $perm = $mapPermission->get($permKey) . '_' . $modelKey;
+
+                        if ($role->hasPermission($perm)) {
+                            $selected[] = $perm;
+                        }
+                    }
+                }
+            @endphp
+
+            <select
+                name="permissions[]"
+                class="selectpicker form-control"
+                multiple
+                data-live-search="true"
+                data-actions-box="true"
+                data-size="6"
+                title="لم يتم اختيار شيء">
+
+                @foreach ($permissions as $permKey)
+                    @php
+                        $value = $mapPermission->get($permKey).'_'.$modelKey;
+                    @endphp
+
+                    <option value="{{ $value }}"
+                            @if(in_array($value, $selected)) selected @endif>
+                        @lang('roles::roles.permission_maps.' . $mapPermission->get($permKey))
+                    </option>
+                @endforeach
+
+            </select>
+        </div>
+
+    @endforeach
 </div>
+
+
+
+<!-- تحميل bootstrap-select JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/js/bootstrap-select.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        $('.selectpicker').selectpicker();
+    });
+</script>

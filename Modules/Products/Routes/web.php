@@ -11,18 +11,8 @@
 |
 */
 
-use Modules\Products\Http\Controllers\Dashboard\ProductController;
 
 Route::middleware('dashboard')->prefix('dashboard')->as('dashboard.')->group(function () {
     Route::resource('products', 'Dashboard\ProductController');
-
+    Route::resource('{product}/product_variances', 'Dashboard\ProductVarianceController');
 });
-Route::get('products/requests', [ProductController::class, 'requests'])
-    ->name('requests');
-Route::put('products/{product}/accept', 'Dashboard\ProductController@accept')->name('acceptproduct');
-Route::put('/user-products/{userProduct}/accept', 'Dashboard\ProductController@acceptUserProduct')->name('acceptuserproduct');
-
-Route::put('products/{product}/reject', 'Dashboard\ProductController@reject')->name('rejectproduct');
-Route::put('/user-products/{userProduct}/reject', 'Dashboard\ProductController@rejectUserProduct')->name('rejectuserproduct');
-Route::post('products/active/{product}', [ProductController::class, 'activate']);
-

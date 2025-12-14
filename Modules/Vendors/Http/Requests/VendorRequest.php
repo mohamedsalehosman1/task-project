@@ -1,8 +1,9 @@
 <?php
+
 namespace Modules\Vendors\Http\Requests;
 
-use Astrotomic\Translatable\Validation\RuleFactory;
 use Illuminate\Foundation\Http\FormRequest;
+use Astrotomic\Translatable\Validation\RuleFactory;
 
 class VendorRequest extends FormRequest
 {
@@ -40,37 +41,21 @@ class VendorRequest extends FormRequest
     public function createRules()
     {
         return RuleFactory::make([
-            '%name%'                         => ['required', 'string', 'max:255'],
-            '%description%'                  => ['required', 'string'],
-            '%nationality%'                  => ['required', 'string'],
-            'identity_number'                => [
-                'required',
-                'unique:vendors,identity_number',
-                'numeric',
-                'regex:/^[12][0-9]{9}$/',
-            ],
-            'commercial_registration_number' => [
-                'required',
-                'unique:vendors,commercial_registration_number',
-                'numeric',
-                'digits:10',
-            ],
+           'name:ar' => ['required', 'string', 'max:255'],
+                        'name:en' => ['required', 'string', 'max:255'],
+            'description:en' => ['required', 'string'],
 
-            'email'                          => ['required', 'unique:vendors,email', 'unique:users,email'],
-            'phone'                          => [
-                'required',
-                'unique:vendors,phone',
-                'unique:users,phone',
-                'numeric',
-                'regex:/^(009665|9665|\+9665|05)[0-9]{8}$/',
-            ],
-            'password'                       => ['required', 'min:8', 'confirmed'],
-            'image'                          => ['required', 'mimes:jpeg,jpg,png', 'max:4000'],
-            'banners'                        => ['required', 'array'],
-            'banners.*'                      => ['required', 'mimes:jpeg,jpg,png', 'max:4000'],
-            "lat"                            => ['required'],
-            "long"                           => ['required'],
-            "address"                        => ['required', 'string'],
+            'description:ar' => ['required', 'string'],
+            'email' => ['required', 'unique:vendors,email', 'unique:users,email'],
+            'phone' => ['required', 'unique:vendors,phone', 'unique:users,phone', "numeric"],
+            'password' => ['required', 'min:8', 'confirmed'],
+           'image' => ['required', 'image', 'mimes:jpeg,jpg,png', 'max:1000'],
+'banners' => ['required', 'array'],
+'banners.*' => ['required', 'image', 'mimes:jpeg,jpg,png', 'max:1000'],
+
+            "lat" => ['required'],
+            "long" => ['required'],
+            "address" => ['required', 'string'],
         ]);
     }
 
@@ -82,20 +67,23 @@ class VendorRequest extends FormRequest
     public function updateRules()
     {
         $vendor = $this->route('vendor') ?? auth()->user()->vendor;
-        $user   = $vendor->admin;
+        $user = $vendor->admin;
 
         return RuleFactory::make([
-            '%name%'        => ['required', 'string', 'max:255'],
-            '%description%' => ['required', 'string'],
-            'email'         => ['required', 'unique:vendors,email,' . $vendor->id, 'unique:users,email,' . $user->id],
-            'phone'         => ['required', "numeric", 'unique:vendors,phone,' . $vendor->id, 'unique:users,phone,' . $user->id],
-            'password'      => ['nullable', 'min:8', 'confirmed'],
-            'image'         => ['nullable', 'mimes:jpeg,jpg,png', 'max:1000'],
-            'banners'       => ['nullable', "array"],
-            'banners.*'     => ['nullable', 'mimes:jpeg,jpg,png', 'max:1000'],
-            "lat"           => ['required'],
-            "long"          => ['required'],
-            "address"       => ['required', 'string'],
+            'name:ar' => ['required', 'string', 'max:255'],
+                        'name:en' => ['required', 'string', 'max:255'],
+            'description:en' => ['required', 'string'],
+
+            'description:ar' => ['required', 'string'],
+            'email' => ['required', 'unique:vendors,email,' . $vendor->id, 'unique:users,email,' . $user->id],
+            'phone' => ['required', "numeric", 'unique:vendors,phone,' . $vendor->id, 'unique:users,phone,' . $user->id],
+            'password' => ['nullable', 'min:8', 'confirmed'],
+            'image' => ['nullable', 'mimes:jpeg,jpg,png', 'max:1000'],
+            'banners' => ['nullable', "array"],
+            'banners.*' => ['nullable', 'mimes:jpeg,jpg,png', 'max:1000'],
+            "lat" => ['required'],
+            "long" => ['required'],
+            "address" => ['required', 'string'],
         ]);
     }
 

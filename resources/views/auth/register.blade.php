@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="home-btn d-none d-sm-block">
-        <a href="{{ route('home') }}" class="text-dark"><i class="fas fa-home h2"></i></a>
+        <a href="{{ route('frontend.home') }}" class="text-dark"><i class="fas fa-home h2"></i></a>
     </div>
     <div class="account-pages my-5 pt-sm-5">
         <div class="container">
@@ -16,7 +16,7 @@
                         <div class="bg-login text-center" style="background-color: {{ env('DASHBOARD_CHOSEN_COLOR') }};">
                             <div class="bg-login-overlay"></div>
                             <div class="position-relative">
-                                <a href="{{ route('home') }}" class="logo logo-dark mt-4">
+                                <a href="{{ route('frontend.home') }}" class="logo logo-dark mt-4">
                                     <img src="{{ app_login_logo() }}" alt="" height="100">
                                 </a>
                             </div>
@@ -26,12 +26,13 @@
                                 {{ BsForm::resource('vendors::vendors')->post(route('store.register'), ['files' => true, 'data-parsley-validate']) }}
 @include('dashboard::errors')
 
-@bsMultilangualFormTabs
+@multilingualFormTabs
     {{ BsForm::text('name')->required()->attribute(['data-parsley-maxlength' => '191', 'data-parsley-minlength' => '3']) }}
     {{ BsForm::text('nationality')->required()->attribute(['data-parsley-maxlength' => '191', 'data-parsley-minlength' => '3']) }}
 
     {{ BsForm::textarea('description')->attribute(['class' => 'textarea']) }}
-@endBsMultilangualFormTabs
+@endMultilingualFormTabs
+
 
 <div class="row">
     <div class="col-6">

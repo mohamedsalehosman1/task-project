@@ -2,15 +2,26 @@
 
 namespace Modules\Products\Http\Requests;
 
+use Astrotomic\Translatable\Validation\RuleFactory;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductRequest extends FormRequest
 {
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
     public function authorize()
     {
         return true;
     }
 
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
     public function rules()
     {
         if ($this->isMethod('POST')) {
@@ -21,73 +32,74 @@ class ProductRequest extends FormRequest
     }
 
     /**
-     * قواعد إنشاء المنتج الجديد
+     * Get the create validation rules that apply to the request.
+     *
+     * @return array
      */
     public function createRules()
     {
-        return [
-            'name.*'               => 'required|string|max:255',
-            'company_name'         => 'nullable|array',
-            'description'          => 'nullable|array',
-            'vendor_id'            => 'required|integer|exists:vendors,id',
-            'service_id'           => 'required|integer|exists:services,id',
-            'old_price'            => 'nullable|numeric',
-            'price'                => 'required|numeric',
-            'pay_type'            => 'nullable|in:in_app,out_app',
-            'has_quantity_limit'   => 'nullable|boolean',
-            'max_amount'           => 'nullable|integer|min:0|required_if:has_quantity_limit,1',
-            'base_preparation_time'=> 'nullable|string',
-            'region_id'            => 'nullable|integer|exists:regions,id',
-            'addresses_ids'        => 'nullable|array',
-            'addresses_ids.*'      => 'integer|exists:addresses,id',
-            'enable_working_hours' => 'nullable|boolean',
+        return RuleFactory::make([
+            '%name%' => ['required', 'string', 'max:255'],
+            // '%description%' => ['required'],
 
-            // Working hours (optional)
-            'working_hours.day'    => 'nullable|array',
-            'working_hours.from'   => 'nullable|array',
-            'working_hours.to'     => 'nullable|array',
-        ];
+            "service_id" => ['required', 'exists:services,id'],
+            "vendor_id" => ['required', 'exists:vendors,id'],
+
+            "made_in" => ['required', 'string'],
+            // "material" => ['required', 'array'],
+            // "material.*.material" => ['required', 'string'],
+
+            'price' => ['required', 'numeric', 'min:.01'],
+            'old_price' => ['required', 'lt:price'],
+
+            'cover' => ['required', 'mimes:jpeg,jpg,png', 'max:10000'],
+            'images' => ['required', 'array'],
+            'images.*' => ['required', 'mimes:jpeg,jpg,png', 'max:10000'],
+        ]);
     }
 
-
+    /**
+     * Get the update validation rules that apply to the request.
+     *
+     * @return array
+     */
     public function updateRules()
     {
-        return [
-            'name.*'               => 'required|string|max:255',
-            'company_name'         => 'nullable|array',
-            'description'          => 'nullable|array',
-            'vendor_id'            => 'required|integer|exists:vendors,id',
-            'service_id'           => 'required|integer|exists:services,id',
-            'old_price'            => 'nullable|numeric',
-            'price'                => 'required|numeric',
-            'has_quantity_limit'   => 'nullable|boolean',
-            'max_amount'           => 'nullable|integer|min:0|required_if:has_quantity_limit,1',
-            'base_preparation_time'=> 'nullable|string',
-            'region_id'            => 'nullable|integer|exists:regions,id',
-            'addresses_ids'        => 'nullable|array',
-            'addresses_ids.*'      => 'integer|exists:addresses,id',
-            'enable_working_hours' => 'nullable|boolean',
-'active'=>'nullable|boolean',
-            // Working hours
-            'working_hours.day'    => 'nullable|array',
-            'working_hours.from'   => 'nullable|array',
-            'working_hours.to'     => 'nullable|array',
-        ];
+        return RuleFactory::make([
+            '%name%' => ['required', 'string', 'max:255'],
+            '%description%' => ['required', 'string'],
+
+            "service_id" => ['required', 'exists:services,id'],
+            "vendor_id" => ['required', 'exists:vendors,id'],
+
+            "made_in" => ['required', 'string'],
+            "material" => ['required', 'array'],
+            "material.*.material" => ['required', 'string'],
+
+            'price' => ['required', 'numeric', 'min:.01'],
+            'old_price' => ['required', 'numeric', 'min:.01', 'gt:price'],
+
+            'cover' => ['nullable', 'mimes:jpeg,jpg,png', 'max:10000'],
+            'images' => ['nullable', 'array'],
+            'images.*' => ['nullable', 'mimes:jpeg,jpg,png', 'max:10000'],
+        ]);
     }
 
+    // to do
+
+    // $service_ids = array_diff($product->services->pluck('id')->toArray(), $data['service']);
+
+    // $productsIsUsedByVendors = Price::whereProductId($product->id)->whereHas('vendorService' , fn($q) => $q->whereIn('service_id' , $service_ids))->get() ;
+
+    // dd($productsIsUsedByVendors);
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
     public function attributes()
     {
-        return [
-            'name.*'               => trans('products::products.attributes.name'),
-            'price'                => trans('products::products.attributes.price'),
-            'old_price'            => trans('products::products.attributes.old_price'),
-            'vendor_id'            => trans('products::products.attributes.vendor_id'),
-            'service_id'           => trans('products::products.attributes.service_id'),
-            'region_id'            => trans('products::products.attributes.region_id'),
-            'addresses_ids'        => trans('products::products.attributes.addresses'),
-            'has_quantity_limit'   => trans('products::products.attributes.has_quantity_limit'),
-            'max_amount'           => trans('products::products.attributes.max_amount'),
-            'enable_working_hours' => trans('products::products.attributes.enable_working_hours'),
-        ];
+        return RuleFactory::make(trans('products::products.attributes'));
     }
 }

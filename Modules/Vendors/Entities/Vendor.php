@@ -29,6 +29,7 @@ class Vendor extends Authenticatable implements HasMedia, HasLocalePreference
         InteractsWithMedia,
         Filterable,
         SoftDeletes,
+        Impersonate,
         Translatable,
         Favorable,
         MediaTrait,
@@ -46,16 +47,20 @@ class Vendor extends Authenticatable implements HasMedia, HasLocalePreference
         'rate',
         'address',
         'lat',
-        'status',
         'long',
-       'commercial_registration_number',
-       'identity_number'
+        'password',
+        'remember_token',
+        'blocked_at',
+        'last_login_at',
+        'device_token',
+        'preferred_locale',
+        'phone_verified_at',
     ];
 
 
     protected $guard = "vendor";
 
-    public $translatedAttributes = ['name', 'description','nationality'];
+    public $translatedAttributes = ['name', 'description'];
 
     /**
      * The relations to eager load on every query.

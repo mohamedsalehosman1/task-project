@@ -19,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Configure translatable locales to only use ar and en
+        // This must be set in register() before the Locales class is instantiated
+        config(['translatable.locales' => ['ar', 'en']]);
+
         if (config('app.installed') && config('app.debug')) {
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         }

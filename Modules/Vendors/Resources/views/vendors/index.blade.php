@@ -6,7 +6,7 @@
 
 @section('content')
 
-@component('dashboard::layouts.components.page')
+    @component('dashboard::layouts.components.page')
         @slot('title', trans('vendors::vendors.plural'))
 
         @slot('breadcrumbs', ['dashboard.vendors.index'])
@@ -27,7 +27,6 @@
                     <th>@lang('vendors::vendors.attributes.name')</th>
                     <th>@lang('vendors::vendors.attributes.email')</th>
                     <th>@lang('vendors::vendors.attributes.phone')</th>
-                    <th>@lang('vendors::vendors.attributes.blocked')</th>
                     <th>@lang('vendors::vendors.attributes.status')</th>
                     <th>...</th>
                 </tr>
@@ -53,22 +52,13 @@
                         <td class="align-middle">{{ $vendor->email }}</td>
                         <td class="align-middle">{{ $vendor->phone }}</td>
                         <td class="align-middle">@include('vendors::vendors.partials.flags.blocked')</td>
-                        <td>{!! $vendor->getStatus() !!}</td>
 
-
-                        @if(!$vendor->status == 'pending')
-                            @include('vendors::vendors.partials.actions.show')
-                            @include('vendors::vendors.partials.actions.block')
-                            @include('vendors::vendors.partials.actions.delete')
-                            @include('vendors::vendors.partials.actions.approved')
-                        @else
                         <td class="align-middle">
                             @include('vendors::vendors.partials.actions.show')
                             @include('vendors::vendors.partials.actions.edit')
                             @include('vendors::vendors.partials.actions.block')
                             @include('vendors::vendors.partials.actions.delete')
                         </td>
-                        @endif
                     </tr>
                 @empty
                     <tr>

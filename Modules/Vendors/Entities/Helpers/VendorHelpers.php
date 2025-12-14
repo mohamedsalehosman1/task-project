@@ -2,7 +2,6 @@
 
 namespace Modules\Vendors\Entities\Helpers;
 
-use App\Enums\WasherStatusEnum;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Validation\ValidationException;
@@ -398,18 +397,5 @@ trait VendorHelpers
         return false;
     }
 
-public function getStatusColor()
-    {
-        return WasherStatusEnum::colors($this->status);
-    }
 
-    public function getStatusName()
-    {
-        return WasherStatusEnum::translatedName($this->status);
-    }
-
-    public function getStatus()
-    {
-        return "<span class='badge text-white' style='background-color: {$this->getStatusColor()}'>{$this->getStatusName()}</span>";
-    }
 }

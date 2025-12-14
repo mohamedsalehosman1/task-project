@@ -9,7 +9,7 @@ class ProductTranslation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name' , 'description','company_name','admin_reply'];
+    protected $fillable = ['name' , 'description'];
 
     protected $table = 'product_translations';
 

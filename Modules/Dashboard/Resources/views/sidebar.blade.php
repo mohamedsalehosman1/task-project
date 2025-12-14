@@ -7,12 +7,12 @@
 @include('accounts::admins.sidebar')
 @include('roles::_sidebar')
 @include('accounts::users.sidebar')
+@include('advertisements::advertisements.sidebar')
 {{-- @include('addresses::.sidebar') --}}
-{{-- @include('vendors::vendors.sidebar') --}}
-{{-- @include('services::services.sidebar') --}}
+@include('vendors::vendors.sidebar')
+@include('services::services.sidebar')
 @include('products::products.sidebar')
 
-{{-- @include('advertisements::advertisements.sidebar') --}}
 @include('orders::orders.sidebar')
 @include('notifications::notifications.sidebar')
 

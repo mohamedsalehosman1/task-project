@@ -8,12 +8,13 @@
     </div>
 @endif
 
-@bsMultilangualFormTabs
+@multilingualFormTabs
     {{ BsForm::text('name')->value(Settings::locale($locale->code)->get('name'))->attribute(['data-parsley-maxlength' => '191', 'data-parsley-minlength' => '3']) }}
     {{ BsForm::textarea('description')->rows(3)->attribute('class', 'form-control textarea')->value(Settings::locale($locale->code)->get('description'))->attribute(['data-parsley-minlength' => '3']) }}
     {{-- {{ BsForm::textarea('meta_description')->rows(3)->attribute('class','form-control textarea')->value(Settings::locale($locale->code)->get('meta_description'))->attribute(['data-parsley-minlength' => '3']) }} --}}
     {{-- {{ BsForm::text('keywords')->value(Settings::locale($locale->code)->get('keywords'))->note(trans('settings::settings.notes.keywords')) }} --}}
-@endBsMultilangualFormTabs
+@endMultilingualFormTabs
+
 
 <div class="row mb-3">
     <div class="col-md-6">
@@ -64,7 +65,7 @@
 </div> --}}
 
 <div class="card">
-   
+
     <div class="card-body">
         <div class="form-group">
             <label for="address">

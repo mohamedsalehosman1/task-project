@@ -18,7 +18,6 @@ class CreateVendorTranslationsTable extends Migration
             $table->unsignedBigInteger('vendor_id');
             $table->string('name');
             $table->text('description');
-            $table->text('nationality');
             $table->string('locale')->index();
             $table->unique(['vendor_id', 'locale']);
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');

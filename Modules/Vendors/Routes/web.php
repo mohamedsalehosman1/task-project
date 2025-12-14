@@ -34,6 +34,4 @@ Route::middleware('dashboard')->prefix('dashboard')->as('dashboard.')->group(fun
     Route::put('vendors/{vendor}/edit', 'Dashboard\VendorsController@updateData')->name('vendors.update.data');
 
     Route::resource('vendors', 'Dashboard\VendorsController');
-        Route::post('vendors/{vendor}/status', 'Dashboard\VendorsController@status')->name('vendors.changeStatus');
-
 });
