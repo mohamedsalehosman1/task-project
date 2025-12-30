@@ -204,12 +204,12 @@
             }
         });
 
-        // API base URL
-        const API_BASE_URL = '{{ url("/api") }}';
+        // API base URL (GLOBAL)
+        window.API_BASE_URL = "{{ url('/api') }}";
     </script>
 
     @stack('scripts')
+    @stack('js')
 </body>
 
 </html>
-
